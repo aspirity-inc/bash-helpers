@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+appName=$1
+tarFlags=$2
+dlUrl=$3
+setupFilePath=~/Downloads/$appName.setup
+installDir=~/.apps/$appName
+# remove the old setup file if exists
+rm -f $setupFilePath
+
+echo -e "\e[32m ================= \e[39m"
+echo -e "\e[32m download $appName \e[39m"
+echo -e "\e[32m ================= \e[39m"
+curl -L $dlUrl -o $setupFilePath
+
+echo -e "\e[32m create install directory $installDir \e[39m"
+sudo mkdir --parents $installDir
+
+echo -e "\e[32m extract files to install directory $installDir \e[39m"
+sudo tar $tarFlags $setupFilePath -C $installDir --strip-components=1
