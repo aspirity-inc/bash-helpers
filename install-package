@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+pkgName=$1
+dlUrl=$2
+setupFilePath=~/Downloads/$pkgName.deb
+# remove the old setup file if exists
+rm -f $setupFilePath
+
+echo -e "\e[32m ========================= \e[39m"
+echo -e "\e[32m download $pkgName package \e[39m"
+echo -e "\e[32m ========================= \e[39m"
+curl -L $dlUrl -o $setupFilePath
+
+# by https://unix.stackexchange.com/a/159114
+echo -e "\e[32m install package \e[39m"
+sudo dpkg -i $setupFilePath
+sudo apt-get install -f

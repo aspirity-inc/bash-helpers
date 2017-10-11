@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+echo -e "\e[32m ============================ \e[39m"
+echo -e "\e[32m  NVM and latest LTS nodeJS   \e[39m"
+echo -e "\e[32m ============================ \e[39m"
+install prerequisites
+sudo apt-get --yes install \
+    build-essential \
+    libssl-dev \
+    curl
+nvm_ver=$(latest-gh-rel-tag creationix nvm)
+echo "download and run install script ($nvm_ver)"
+curl -L "https://raw.githubusercontent.com/creationix/nvm/$nvm_ver/install.sh" | bash
+echo "load nvm to current session"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # <- This loads nvm
+echo "get the latest LTS version of nodeJS"
+nodeVersion=$( nvm ls-remote --lts | tail -1 | grep -Po '[0-9]+\.[0-9]+\.[0-9]+' )
+echo "... and install it ($nodeVersion)"
+nvm install $nodeVersion
