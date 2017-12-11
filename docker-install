@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+echo -e "\e[32m ================= \e[39m"
+echo -e "\e[32m     Docker        \e[39m"
+echo -e "\e[32m ================= \e[39m"
+echo "from https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/"
+# install prerequisites
+sudo apt-get --yes install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+echo "Add Docker’s official GPG key"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+echo "set up the stable repository"
+sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+echo "INSTALL DOCKER CE"
+sudo apt-get update
+sudo apt-get --yes install docker-ce
