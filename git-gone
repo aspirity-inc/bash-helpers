@@ -1,0 +1,14 @@
+#!/bin/sh
+#source "$(git --exec-path)/git-sh-setup"
+goneBranches=$(git branch -vv | grep ': gone]' | awk '{print $1}')
+
+for branch in $goneBranches; 
+do
+
+	if [ "$1" = "rm" ]; then
+		git branch -D $branch
+	else
+		echo $branch;
+	fi
+done
+

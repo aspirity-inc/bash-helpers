@@ -56,3 +56,24 @@ install-app pkgName downloadUrl
 ```bash
 install-package chrome "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 ```
+
+### Git
+#### Recheckout branch
+Remove local copy of remote branch and checkout it again
+```bash
+git recheckout <branch> [--force]
+```
+
+#### Gone upstream
+You have developed a feature, then pushed your branch to a remote.
+Then it passed a code review and was merged and removed from the remote.
+And now you have some local branch with gone upstream.
+
+To list all such branches run:
+```bash
+git gone
+```
+To remove them run:
+```bash
+git gone rm
+```

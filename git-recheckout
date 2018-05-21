@@ -1,0 +1,19 @@
+#!/bin/sh
+#source "$(git --exec-path)/git-sh-setup"
+targetBranch="$1"
+# get current branch to return to it
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+# if current branch is target
+if [ "$branch" = "$targetBranch" ]; then
+  if [ "--force" != "$2" ]; then
+    echo "Error: you try to recheckout current branch. Use --force"
+    exit 1
+  fi
+  # move to lates commit of origin (detached head)
+  commit=$(git rev-parse --verify origin/$targetBranch)
+  echo checkout $commit
+  git checkout $commit --quiet
+fi
+git branch -D $targetBranch
+git fetch --prune
+git checkout $targetBranch
