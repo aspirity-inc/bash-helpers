@@ -7,9 +7,9 @@ sudo apt-get --yes install \
     build-essential \
     libssl-dev \
     curl
-nvm_ver=$(latest-gh-rel-tag creationix nvm)
+nvm_ver=$(latest-gh-rel-tag nvm-sh nvm)
 echo "download and run install script ($nvm_ver)"
-curl -L "https://raw.githubusercontent.com/creationix/nvm/$nvm_ver/install.sh" | bash
+curl -L "https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_ver/install.sh" | bash
 echo "load nvm to current session"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # <- This loads nvm
